@@ -15,7 +15,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class PageRank {
 
-	public static class Map extends Mapper<Object, Text, IntWritable, Text> {
+	public static class MyMapper extends Mapper<Object, Text, IntWritable, Text> {
 
 		@Override
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
@@ -36,7 +36,7 @@ public class PageRank {
 		}
 	}
 
-	public static class Reduce extends Reducer<IntWritable, Text, IntWritable, DoubleWritable> {
+	public static class MyReducer extends Reducer<IntWritable, Text, IntWritable, DoubleWritable> {
 
 		@Override
 		public void reduce(IntWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -55,8 +55,8 @@ public class PageRank {
 		job.setJarByClass(PageRank.class);
 		job.setJobName("Page Rank");
 		
-		job.setMapperClass(Map.class);
-		job.setReducerClass(Reduce.class);
+		job.setMapperClass(MyMapper.class);
+		job.setReducerClass(MyReducer.class);
 		
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
