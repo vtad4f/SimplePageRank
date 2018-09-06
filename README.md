@@ -29,9 +29,9 @@
 * hadoop fs -rm -r OutputFolder                                     //to remove "OutputFolder" directory and all its files
   
   
-### General Information:
+### General Information (Cloudera):
 
-* Cloudera Settings:      Use default remote desktop client
+* Operating System:         Mac -> Microsoft Remote Desktop, Windows -> Default Remote Desktop, Ubuntu: Remmina
 * Machine:                  cqs-cs6304-xxx.ats.mst.edu
 * User:                     cloudera
 * Default Password:         stu-pass
