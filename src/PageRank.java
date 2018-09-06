@@ -15,34 +15,34 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class PageRank {
 
-	public static class MyMapper extends Mapper<Object, Text, IntWritable, Text> {
+	public static class MyMapper extends Mapper<Object, Text, Text, DoubleWritable> {
 
 		@Override
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
 			String[] nodes = value.toString().split(",");
-			int nodeId = Integer.parseInt(nodes[0]);
-			context.write(new IntWritable(nodeId), new Text(String.valueOf(0.0)));
+			String nodeId = nodes[0];
+			context.write(new Text(nodeId), new DoubleWritable(0.0));
 			
-			int[] outLinks = new int[nodes.length-1];			
+			String[] outLinks = new String[nodes.length-1];			
 			for(int i=1; i<nodes.length; i++) {
-				outLinks[i-1] = Integer.parseInt(nodes[i]);
+				outLinks[i-1] = nodes[i];
 			}						
 			double initRank = 1.0;
 			double ratio = initRank / outLinks.length;			
 			for (int i = 0; i < outLinks.length; i++) {
-				context.write(new IntWritable(outLinks[i]), new Text(String.valueOf(ratio)));
+				context.write(new Text(outLinks[i]), new DoubleWritable(ratio));
 			}
 		}
 	}
 
-	public static class MyReducer extends Reducer<IntWritable, Text, IntWritable, DoubleWritable> {
+	public static class MyReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
 
 		@Override
-		public void reduce(IntWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+		public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException, InterruptedException {
 			
 			double pagerank = 0.0;
-			for (Text value : values) {
+			for (DoubleWritable value : values) {
 				pagerank += Double.parseDouble(value.toString());
 			}
 			context.write(key, new DoubleWritable(pagerank));
@@ -64,8 +64,8 @@ public class PageRank {
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		
-		job.setOutputKeyClass(IntWritable.class);
-		job.setOutputValueClass(Text.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(DoubleWritable.class);
 		
 		job.setNumReduceTasks(1);
 
