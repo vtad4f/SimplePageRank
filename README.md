@@ -31,7 +31,7 @@
   
 ### General Information (Cloudera):
 
-* Operating System:         Mac -> Microsoft Remote Desktop, Windows -> Default Remote Desktop, Ubuntu: Remmina
+* Operating System:         Mac -> Microsoft Remote Desktop, Windows -> Default Remote Desktop, Ubuntu -> Remmina
 * Machine:                  cqs-cs6304-xxx.ats.mst.edu
 * User:                     cloudera
 * Default Password:         stu-pass
