@@ -20,15 +20,12 @@ public class PageRank {
 		@Override
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
-			String[] nodes = value.toString().split(",");
+			String[] nodes = value.toString().split("->");
 			String nodeId = nodes[0];
 			double initRank = 1.0;
 			context.write(new Text(nodeId), new DoubleWritable(initRank));
 			
-			String[] outLinks = new String[nodes.length-1];			
-			for(int i=1; i<nodes.length; i++) {
-				outLinks[i-1] = nodes[i];
-			}						
+			String[] outLinks = nodes[1].split(",");								
 			double ratio = initRank / outLinks.length;			
 			for (int i = 0; i < outLinks.length; i++) {
 				context.write(new Text(outLinks[i]), new DoubleWritable(ratio));
