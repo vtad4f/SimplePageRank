@@ -21,9 +21,9 @@
 
 ### Hadoop Commands:
 * hadoop fs -mkdir InputFolder                                      //to create a new input folder
-* hadoop fs -copyFromLocal &lt;input file> InputFoler                  //to copy a file from local directory to hadoop environment
-* hadoop fs -ls InputFoler                                          //to see the files inside "InputFolder"
-* hadoop jar &lt;jar file name> &lt;class name> InputFoler OutputFolder   //running mapreduce operation
+* hadoop fs -copyFromLocal &lt;input file> InputFolder                  //to copy a file from local directory to hadoop environment
+* hadoop fs -ls InputFolder                                          //to see the files inside "InputFolder"
+* hadoop jar &lt;jar file name> &lt;class name> InputFolder OutputFolder   //running mapreduce operation
 * hadoop fs -ls OutputFolder                                        //to see the files inside "OutputFolder"
 * hadoop fs -cat OutputFolder/part-r-00000                          //to see the content inside "OutputFolder/part-r-00000" file
 * hadoop fs -rm -r OutputFolder                                     //to remove "OutputFolder" directory and all its files
