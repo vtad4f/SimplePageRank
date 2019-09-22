@@ -4,7 +4,7 @@
 * Open “eclipse”, right click on “Package Explorer” window, click import.
 * Select “Git”-> “Projects from Git” and click “next”.
 * Select “clone url” and click “next”.
-* Paste “https://github.com/shudipdatta/SimplePageRank.git” in the “url” textbox, Change protocol to “git”, and click “next”. 
+* Paste “https://github.com/vtad4f/SimplePageRank.git” in the “url” textbox, Change protocol to “git”, and click “next”. 
 * Choose “Import existing project” and click “finish”.
 
 ### Referencing libraries:
