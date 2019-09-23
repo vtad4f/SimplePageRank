@@ -8,8 +8,8 @@
 * Choose “Import existing project” and click “finish”.
 
 ### Referencing libraries:
-* Right click on project and select “build path”-> “configure build path” ->”libraries”->”add external jars”.
-* Go to "cloudera" -> "git" -> "SimplePageRank" -> "lib" and select all jars and click ok.
+* Right click on project and select “build path” -> “configure build path” -> ”libraries” -> ”add external jars”.
+* You shouldn't need to add anything
 
 ### Input file:
 * Open folder "file", you will see the input file named "PageRank.txt"
