@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/guava-17.0.jar"/>                 <!-- Apr 22, 2014 -->
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-configuration-1.10.jar"/> <!-- Oct 24, 2013 -->
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-lang-2.6.jar"/>           <!-- Jan 16, 2011 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-auth-2.2.0.jar"/>          <!-- Oct 07, 2013 -->
 	<classpathentry kind="output" path="bin"/>
 </classpath>
