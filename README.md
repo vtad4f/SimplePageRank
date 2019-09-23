@@ -12,7 +12,7 @@
 * You shouldn't need to add anything
 
 ### Input file:
-* Open folder "file", you will see the input file named "PageRank.txt"
+* Open folder "file", you will see the input text file
 
 ### Output jar:
 * Right click on project and select "Export".
@@ -20,14 +20,7 @@
 * Select the export destination as "cloudera" -> "git" -> "SimplePageRank" -> "jar" and click "Finish".
 
 ### Hadoop Commands:
-* hadoop fs -mkdir InputFolder                                      //to create a new input folder
-* hadoop fs -copyFromLocal &lt;input file> InputFolder                  //to copy a file from local directory to hadoop environment
-* hadoop fs -ls InputFolder                                          //to see the files inside "InputFolder"
-* hadoop jar &lt;jar file name> &lt;class name> InputFolder OutputFolder   //running mapreduce operation
-* hadoop fs -ls OutputFolder                                        //to see the files inside "OutputFolder"
-* hadoop fs -cat OutputFolder/part-r-00000                          //to see the content inside "OutputFolder/part-r-00000" file
-* hadoop fs -rm -r OutputFolder                                     //to remove "OutputFolder" directory and all its files
-  
+* See run.sh
   
 ### General Information (Cloudera):
 
