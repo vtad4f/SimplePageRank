@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="var" path="HADOOP_CONF"/>
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-logging-1.2.jar"/>        <!-- Jul 05, 2014 -->
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-common-2.2.0.jar"/>        <!-- Oct 07, 2013 -->
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-core-1.2.1.jar"/>          <!-- Jul 24, 2013 -->
