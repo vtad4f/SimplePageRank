@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-core-1.2.1.jar"/>
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/guava-17.0.jar"/>
 	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-configuration-1.10.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
