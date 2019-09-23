@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-common-2.2.0.jar"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-core-1.2.1.jar"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/guava-17.0.jar"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-configuration-1.10.jar"/>
-	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-logging-1.2.jar"/>        <!-- Jul 05, 2014 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-common-2.2.0.jar"/>        <!-- Oct 07, 2013 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/hadoop-core-1.2.1.jar"/>          <!-- Jul 24, 2013 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/guava-17.0.jar"/>                 <!-- Apr 22, 2014 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-configuration-1.10.jar"/> <!-- Oct 24, 2013 -->
+	<classpathentry kind="lib" path="/home/cloudera/git/vtad4f/SimplePageRank/lib/commons-lang-2.6.jar"/>           <!-- Jan 16, 2011 -->
 	<classpathentry kind="output" path="bin"/>
 </classpath>
