@@ -1,6 +1,8 @@
 import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -11,10 +13,31 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
-
 public class PageRank {
 
-	public static class MyMapper extends Mapper<Object, Text, Text, DoubleWritable[]> {
+	public static class DoubleArrayWritable extends ArrayWritable { // https://stackoverflow.com/questions/28914596/mapreduce-output-arraywritable
+
+		public DoubleArrayWritable() {
+			super(DoubleWritable.class, new DoubleWritable[3]);
+		}
+
+		public DoubleArrayWritable(DoubleWritable[] values) {
+			super(DoubleWritable.class, values);
+		}
+
+		@Override
+		public DoubleWritable[] get() {
+			return (DoubleWritable[]) super.get();
+		}
+
+		@Override
+		public String toString() {
+			DoubleWritable[] values = get();
+				return values[0].toString() + " " + values[1].toString() + " " + values[2].toString();
+		}
+	}
+
+	public static class MyMapper extends Mapper<Object, Text, Text, DoubleArrayWritable> {
 
 		@Override
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
@@ -36,31 +59,32 @@ public class PageRank {
 				new DoubleWritable(1)
 			};
 			
-			context.write(new Text(pages[0]), p0);
+			context.write(new Text(pages[0]), new DoubleArrayWritable(p0));
 
 			for (int i = 1; i < pages.length; i++) {
-				context.write(new Text(pages[i]), pn);
+				context.write(new Text(pages[i]), new DoubleArrayWritable(pn));
 			}
 		}
 	}
 
-	public static class MyReducer extends Reducer<Text, DoubleWritable[], Text, DoubleWritable[]> {
+	public static class MyReducer extends Reducer<Text, DoubleArrayWritable, Text, DoubleArrayWritable> {
 
 		@Override
-		public void reduce(Text key, Iterable<DoubleWritable[]> values, Context context) throws IOException, InterruptedException {
+		public void reduce(Text key, Iterable<DoubleArrayWritable> values, Context context) throws IOException, InterruptedException {
 			
 			double[] total = {0.0, 0.0, 0.0};
-			for (DoubleWritable[] value : values) {
-				total[0] += Double.parseDouble(value[0].toString());
-				total[1] += Double.parseDouble(value[1].toString());
-				total[2] += Double.parseDouble(value[2].toString());
+			for (DoubleArrayWritable value : values) {
+				DoubleWritable[] array = value.get();
+				total[0] += Double.parseDouble(array[0].toString());
+				total[1] += Double.parseDouble(array[1].toString());
+				total[2] += Double.parseDouble(array[2].toString());
 			}
 			DoubleWritable[] output = {
 				new DoubleWritable(total[0]),
 				new DoubleWritable(total[1]),
 				new DoubleWritable(total[2])
 			};
-			context.write(key, output);
+			context.write(key, new DoubleArrayWritable(output));
 		}
 	}
 
@@ -76,13 +100,16 @@ public class PageRank {
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 		
-		FileInputFormat.setInputPaths(job, new Path(args[0]));
-		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputValueClass(DoubleArrayWritable.class);
 		
 		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(DoubleWritable[].class);
+		job.setOutputValueClass(DoubleArrayWritable.class);
 		
 		job.setNumReduceTasks(1);
+		
+		FileInputFormat.setInputPaths(job, new Path(args[0]));
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
