@@ -5,6 +5,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -27,7 +28,12 @@ public class PageRank {
 
 		@Override
 		public DoubleWritable[] get() {
-			return (DoubleWritable[]) super.get();
+			Writable[] baseVals = super.get();
+			DoubleWritable[] values = new DoubleWritable[3];
+			values[0] = (DoubleWritable) baseVals[0];
+			values[1] = (DoubleWritable) baseVals[1];
+			values[2] = (DoubleWritable) baseVals[2];
+			return values;
 		}
 
 		@Override
@@ -42,7 +48,12 @@ public class PageRank {
 		@Override
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
-			String[] pages = value.toString().split("[\\s\"\\[\\]',]");
+			if (!value.toString().contains("["))
+			{
+				return; // skip rows in the input that don't have data
+			}
+			
+			String[] pages = value.toString().split("[\\s\"\\[\\]',]+", 0);
 			
 			double d = .85;
 			double initRank = 1.0;
