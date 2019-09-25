@@ -39,7 +39,12 @@ public class PageRank {
 		@Override
 		public String toString() {
 			DoubleWritable[] values = get();
-				return values[0].toString() + " " + values[1].toString() + " " + values[2].toString();
+			return String.format(
+				"%10.2f %10.2f %10.2f",
+				Double.parseDouble(values[0].toString()),
+				Double.parseDouble(values[1].toString()),
+				Double.parseDouble(values[2].toString())
+			);
 		}
 	}
 
