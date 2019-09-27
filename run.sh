@@ -22,5 +22,7 @@ hadoop jar $REPO_DIR/jar/$CLASS_NAME.jar $CLASS_NAME $IN_DIR $OUT_DIR
 # to see the files inside "OutputFolder"
 # to see the content inside "OutputFolder/part-r-00000" file
 hadoop fs -ls $OUT_DIR
-hadoop fs -cat $OUT_DIR/part-r-00000 
+hadoop fs -cat $OUT_DIR/part-r-00000 | sort -k2 -r | head -n 500 > top_500.txt
+
+cat top_500.txt
 
